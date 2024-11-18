@@ -338,8 +338,8 @@ struct TiledMMA : MMA_Atom
     CUTE_STATIC_ASSERT_V(size<1>(ctensor) % size<1>(TiledShape_MNK{}) == Int<0>{});
 
     // Reorder the tensor for the TiledAtom
-    auto t_tile = make_tile(left_inverse(get<0>(PermutationsMNK{})),
-                            left_inverse(get<1>(PermutationsMNK{})));
+    auto t_tile = make_tile(get<0>(PermutationsMNK{}),
+                            get<1>(PermutationsMNK{}));
     auto t_tensor = logical_divide(ctensor, t_tile);                 // (PermM,PermN)
 
     // Tile the tensor for the Atom
@@ -392,8 +392,8 @@ struct TiledMMA : MMA_Atom
     CUTE_STATIC_ASSERT_V(size<1>(atensor) % size<2>(TiledShape_MNK{}) == Int<0>{});
 
     // Reorder the tensor for the TiledAtom
-    auto t_tile = make_tile(left_inverse(get<0>(PermutationsMNK{})),
-                            left_inverse(get<2>(PermutationsMNK{})));
+    auto t_tile = make_tile(get<0>(PermutationsMNK{}),
+                            get<2>(PermutationsMNK{}));
     auto t_tensor = logical_divide(atensor, t_tile);                 // (PermM,PermK)
 
     // Tile the tensor for the Atom
@@ -450,8 +450,8 @@ struct TiledMMA : MMA_Atom
     CUTE_STATIC_ASSERT_V(size<1>(btensor) % size<2>(TiledShape_MNK{}) == Int<0>{});
 
     // Reorder the tensor for the TiledAtom
-    auto t_tile = make_tile(left_inverse(get<1>(PermutationsMNK{})),
-                            left_inverse(get<2>(PermutationsMNK{})));
+    auto t_tile = make_tile(get<1>(PermutationsMNK{}),
+                            get<2>(PermutationsMNK{}));
     auto t_tensor = logical_divide(btensor, t_tile);                 // (PermN,PermK)
 
     // Tile the tensor for the Atom
